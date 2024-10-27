@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { ArrowUpRight, DollarSign, TrendingUp, Zap } from "lucide-react";
+import { ArrowUpRight, TrendingUp, Zap } from "lucide-react";
 import { BiRupee } from "react-icons/bi";
 
 interface ResumeWorthProps {
