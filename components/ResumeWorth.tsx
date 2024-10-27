@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { ArrowUpRight, DollarSign, TrendingUp, Zap } from "lucide-react";
+import { BiRupee } from "react-icons/bi";
 
 interface ResumeWorthProps {
   resumeWorth: string;
@@ -24,7 +25,7 @@ const ResumeWorth: React.FC<ResumeWorthProps> = ({ resumeWorth }) => {
     <div className="space-y-8 p-8 mx-auto max-w-4xl bg-gradient-to-br from-gray-900 to-black text-white rounded-2xl shadow-2xl">
       <div className="text-center">
         <div className="text-6xl font-bold mb-2 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent inline-flex items-center">
-          <DollarSign className="w-12 h-12 mr-2" />₹{estimatedWorth}
+          <BiRupee className="w-12 h-12 mr-2" />₹{estimatedWorth}
         </div>
         <p className="text-xl text-gray-300">Estimated Resume Worth</p>
       </div>
