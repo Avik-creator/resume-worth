@@ -94,9 +94,9 @@ const RoastAnalyzer = () => {
             )}
           </div>
         ) : (
-          <Roast resumeWorth={completion} />
+          <Roast resumeWorth={completion} error={error} />
         )}
-        {error && <p className="mt-4 text-sm text-red-600">{error.message}</p>}
+        {/* {error && <p className="mt-4 text-sm text-red-600">API Error</p>} */}
       </CardContent>
     </Card>
   );

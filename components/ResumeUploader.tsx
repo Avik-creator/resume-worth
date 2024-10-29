@@ -135,7 +135,7 @@ const ResumeUploader: React.FC<Props> = ({ setResumeText, setIsLoading }) => {
         </label>
 
         {fileName && (
-          <div className="mt-4 flex items-center gap-2 text-gray-700">
+          <div className="mt-4 flex items-center gap-2 text-black">
             <MdDescription className="text-yellow-500" />
             <span className="text-sm font-medium">{fileName}</span>
           </div>

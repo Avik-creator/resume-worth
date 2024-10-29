@@ -4,8 +4,9 @@ import React, { useEffect, useState } from "react";
 import ResumeUploader from "./ResumeUploader";
 import ResumeWorth from "./ResumeWorth";
 import { useCompletion } from "ai/react";
+import { Loader2 } from "lucide-react";
 
-const ResumeAnalyzerApp = () => {
+export default function ResumeAnalyzerApp() {
   const [showWorth, setShowWorth] = useState(false);
   const [isLoadingResume, setIsLoadingResume] = useState(false);
   const [resumeText, setResumeText] = useState<string>("");
@@ -22,28 +23,36 @@ const ResumeAnalyzerApp = () => {
     };
 
     if (resumeText !== "") {
-      getResumeWorth(resumeText).then();
+      getResumeWorth(resumeText).catch(console.error);
     }
   }, [resumeText, complete]);
 
   return (
-    <div className="mx-auto">
+    <div className="mx-auto max-w-4xl px-4 py-8">
       {!showWorth ? (
-        <div className="mx-auto pb-[200px]">
-          <p className="text-xl font-light mt-[15px] mb-5">Upload your resume to know your worth.</p>
-          <ResumeUploader setIsLoading={setIsLoadingResume} setResumeText={setResumeText} />
+        <div className="mx-auto space-y-8">
+          <div>
+            <h1 className="text-3xl font-bold mb-4">Resume Analyzer</h1>
+            <p className="text-xl font-light mb-6">Upload your resume to know your worth.</p>
+            <ResumeUploader setIsLoading={setIsLoadingResume} setResumeText={setResumeText} />
+          </div>
+
           {(isLoadingResume || isLoading) && (
-            <div className="absolute left-0 right-0">
-              <div className="inline-block mx-auto my-[30px] w-[30px] h-[30px] border-5 border-white rounded-full border-t-[#ffc75d] animate-spin"></div>
+            <div className="flex flex-col items-center justify-center pt-16">
+              <Loader2 className="w-12 h-12 text-orange-500 animate-spin mb-4" />
+              <p className="text-lg font-medium text-black">Analyzing your resume...</p>
             </div>
           )}
         </div>
       ) : (
         <ResumeWorth resumeWorth={completion} />
       )}
-      {error && <p className="text-red-500 text-sm mt-[10px]">{error.message}</p>}
+      {error && (
+        <div className="mt-8 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+          <p className="font-bold">Error:</p>
+          <p>API Error</p>
+        </div>
+      )}
     </div>
   );
-};
-
-export default ResumeAnalyzerApp;
+}

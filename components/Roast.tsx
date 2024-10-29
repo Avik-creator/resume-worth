@@ -8,9 +8,10 @@ import { TypeAnimation } from "react-type-animation";
 
 interface RoastProps {
   resumeWorth: string;
+  error: Error | undefined;
 }
 
-const Roast: React.FC<RoastProps> = ({ resumeWorth }) => {
+export default function Roast({ resumeWorth, error }: RoastProps) {
   const [roastContent, setRoastContent] = useState<string[]>([]);
   const [isTypingComplete, setIsTypingComplete] = useState(false);
 
@@ -23,21 +24,23 @@ const Roast: React.FC<RoastProps> = ({ resumeWorth }) => {
   }, [resumeWorth]);
 
   return (
-    <div className="space-y-6 p-8 mx-auto max-w-4xl bg-black text-white rounded-lg">
+    <div className="space-y-4 sm:space-y-6 p-4 sm:p-6 md:p-8 mx-auto max-w-4xl bg-black text-white rounded-lg">
       <div className="text-center">
-        <div className="text-4xl font-bold mb-2 bg-gradient-to-r from-yellow-300 to-yellow-400 bg-clip-text text-transparent">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-yellow-300 to-yellow-400 bg-clip-text text-transparent">
           Resume Roast
-        </div>
-        <p className="text-gray-400">Prepare to feel the burn!</p>
+        </h1>
+        <p className="text-sm sm:text-base text-gray-400">Prepare to feel the burn!</p>
       </div>
 
-      <Card className="h-full bg-black text-white rounded-lg p-4">
-        <CardHeader>
-          <CardTitle className="text-lg font-semibold">Resume Roast</CardTitle>
-          <CardDescription className="text-gray-400">Brace yourself, it&apos;s about to get spicy!</CardDescription>
+      <Card className="bg-black text-white rounded-lg border-gray-800">
+        <CardHeader className="space-y-1 sm:space-y-2">
+          <CardTitle className="text-base sm:text-lg md:text-xl font-semibold">Resume Roast</CardTitle>
+          <CardDescription className="text-xs sm:text-sm text-gray-400">
+            Brace yourself, it&apos;s about to get spicy!
+          </CardDescription>
         </CardHeader>
         <CardContent className="bg-inherit">
-          <div className="space-y-2 min-h-[200px]">
+          <div className="space-y-2 min-h-[200px] text-sm sm:text-base">
             {roastContent.length > 0 ? (
               <TypeAnimation
                 sequence={[...roastContent.flatMap(line => [line, 1000]), () => setIsTypingComplete(true)]}
@@ -46,22 +49,22 @@ const Roast: React.FC<RoastProps> = ({ resumeWorth }) => {
                 repeat={0}
                 style={{ whiteSpace: "pre-line", height: "100%" }}
               />
+            ) : error ? (
+              <p className="text-red-500">{error.message}</p>
             ) : (
-              <p>Error Happend. It Happens sometimes. </p>
+              <p className="text-gray-400">Loading roast content...</p>
             )}
           </div>
         </CardContent>
       </Card>
 
       {isTypingComplete && (
-        <div className="text-center">
-          <Button asChild>
+        <div className="text-center pt-4">
+          <Button asChild className="w-full sm:w-auto">
             <Link href="/">Go Back</Link>
           </Button>
         </div>
       )}
     </div>
   );
-};
-
-export default Roast;
+}
