@@ -1,6 +1,6 @@
 # Resume Worth
 
-Welcome to **Resume Worth**, a Next.js-powered project designed to enhance, evaluate and roast resumes by leveraging AI-driven insights and document parsing. This application leverages modern technologies to help users create job-worthy resumes with optimal structuring and design.
+Welcome to **Resume Worth**, a Next.js-powered project designed to enhance, evaluate and roast resumes by leveraging AI-driven insights and document parsing. This application leverages modern technologies to help users create job-worthy resumes with optimal suggestions.
 
 ## Features
 
