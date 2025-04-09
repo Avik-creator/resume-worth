@@ -20,7 +20,7 @@ export async function POST(req: Request) {
   const resumeText = resumeMatch ? resumeMatch[1].trim() : "";
 
   const response = await streamText({
-    model: groq("llama-3.1-70b-versatile"),
+    model: groq("llama-3.3-70b-versatile"),
     messages: [
       {
         role: "system",
